@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2026 at 09:59 AM
+-- Generation Time: Feb 07, 2026 at 11:13 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,16 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `retail_analytics`
 --
--- Create the database
-CREATE DATABASE IF NOT EXISTS retail_analytics;
-USE retail_analytics;
-
--- Drop tables if they exist
-SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS sales;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS customers;
-SET FOREIGN_KEY_CHECKS = 1;
 
 -- --------------------------------------------------------
 
@@ -131,8 +121,7 @@ INSERT INTO `sales` (`sale_id`, `customer_id`, `product_id`, `sale_date`, `quant
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`),
-  ADD KEY `idx_customers_region` (`region`);
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `products`
@@ -145,9 +134,8 @@ ALTER TABLE `products`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`sale_id`),
-  ADD KEY `idx_sales_date` (`sale_date`),
-  ADD KEY `idx_sales_customer` (`customer_id`),
-  ADD KEY `idx_sales_product` (`product_id`);
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -179,8 +167,8 @@ ALTER TABLE `sales`
 -- Constraints for table `sales`
 --
 ALTER TABLE `sales`
-  ADD CONSTRAINT `fk_sales_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
-  ADD CONSTRAINT `fk_sales_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+  ADD CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
+  ADD CONSTRAINT `sales_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
