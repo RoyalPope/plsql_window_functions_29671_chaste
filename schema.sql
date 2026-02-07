@@ -4,13 +4,6 @@
 CREATE DATABASE IF NOT EXISTS retail_analytics;
 USE retail_analytics;
 
--- Drop tables if they exist
-SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS sales;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS customers;
-SET FOREIGN_KEY_CHECKS = 1;
-
 -- Create customers table
 CREATE TABLE customers (
     customer_id       INT AUTO_INCREMENT PRIMARY KEY,
