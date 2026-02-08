@@ -1,7 +1,3 @@
-CYUSA Chaste
-29671
-DBMS PL/SQL
-
 Project Title
 Sales Performance & Customer Segmentation Analysis for a Retail Company
 Step 1: 
